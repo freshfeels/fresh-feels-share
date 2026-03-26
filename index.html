@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Feels | Resource Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --coral: #f26b72;
+            --coral-light: #fde8e9;
+            --coral-dark: #d4555c;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-warm: #fefcfb;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 32px 0;
+        }
+
+        .brand-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .brand-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand-tag {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            padding: 24px 0 48px;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            max-width: 600px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .accent-line {
+            width: 48px;
+            height: 3px;
+            background: var(--coral);
+            border-radius: 2px;
+            margin-bottom: 24px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: none;
+            margin: 0 -32px;
+            padding: 0 32px;
+        }
+
+        .nav-tab {
+            padding: 14px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-tab:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            color: var(--coral);
+            border-bottom-color: var(--coral);
+        }
+
+        .main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 32px 80px;
+        }
+
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--coral-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--coral);
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 24px rgba(242, 107, 114, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--coral);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--coral);
+            background: var(--coral-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .card-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .card-arrow {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover .card-arrow {
+            background: var(--coral);
+        }
+
+        .card-arrow svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+
+        .card:hover .card-arrow svg {
+            color: white;
+        }
+
+        .footer {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-text {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+
+        .footer-link {
+            font-size: 0.78rem;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { padding: 24px 20px 0; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+            .nav-tabs { margin: 0 -20px; padding: 0 20px; overflow-x: auto; }
+            .nav-tab { white-space: nowrap; padding: 12px 16px; font-size: 0.8rem; }
+            .main { padding: 32px 20px 60px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .footer { padding: 24px 20px; }
+            .brand-tag { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="brand-bar">
+            <img src="assets/fresh-feels-logo.png" alt="Fresh Feels" class="brand-logo">
+            <div class="brand-tag">Resource Hub</div>
+        </div>
+
+        <div class="hero">
+            <div class="accent-line"></div>
+            <h1>Strategy, insights &amp; creative resources</h1>
+            <p>Everything we're building for the brand. Audits, frameworks, ad concepts and more, all in one place.</p>
+        </div>
+
+        <nav class="nav-tabs">
+            <a class="nav-tab active" href="#all">All Resources</a>
+            <a class="nav-tab" href="#audits">Audits</a>
+            <a class="nav-tab" href="#frameworks">Frameworks</a>
+            <a class="nav-tab" href="#concepts">Ad Concepts</a>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+
+    <!-- AUDITS -->
+    <div class="section" id="audits">
+        <div class="section-header">
+            <div class="section-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Audits</div>
+                <div class="section-subtitle">Competitive and market analysis</div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <a href="audits/lucent-globe-audit.html" class="card">
+                <div class="card-badge">Competitor Audit</div>
+                <h3>Lucent Globe Ad Audit</h3>
+                <p>Full competitive analysis of Lucent Globe's Meta advertising strategy. Creative breakdown, hooks, copy patterns and strategic takeaways.</p>
+                <div class="card-meta">
+                    <span class="card-date">March 2026</span>
+                    <span class="card-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- FRAMEWORKS -->
+    <div class="section" id="frameworks">
+        <div class="section-header">
+            <div class="section-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Frameworks</div>
+                <div class="section-subtitle">Strategic foundations and methodologies</div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <a href="frameworks/pas-framework.html" class="card">
+                <div class="card-badge">Ad Framework</div>
+                <h3>PAS Framework Resource</h3>
+                <p>Problem-Agitation-Solution framework tailored for Fresh Feels. The strategic foundation behind all ad creative development.</p>
+                <div class="card-meta">
+                    <span class="card-date">March 2026</span>
+                    <span class="card-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- AD CONCEPTS -->
+    <div class="section" id="concepts">
+        <div class="section-header">
+            <div class="section-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Ad Concepts</div>
+                <div class="section-subtitle">Creative ideas and campaign concepts</div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <a href="concepts/pas-ad-concepts.html" class="card">
+                <div class="card-badge">13 Concepts</div>
+                <h3>PAS-Based Ad Concepts</h3>
+                <p>13 ready-to-produce ad concepts across Laundry, Dishwasher, Multipurpose and Cross-range. Complete with hooks, scripts, visual direction and CTAs.</p>
+                <div class="card-meta">
+                    <span class="card-date">March 2026</span>
+                    <span class="card-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <span class="footer-text">Fresh Feels &copy; 2026 &middot; Internal Resource Hub</span>
+        <a class="footer-link" href="https://www.freshfeels.com.au" target="_blank">freshfeels.com.au</a>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href').replace('#', '');
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.section').forEach(section => {
+                if (target === 'all') {
+                    section.style.display = '';
+                } else {
+                    section.style.display = section.id === target ? '' : 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
